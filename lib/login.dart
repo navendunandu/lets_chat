@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lets_chat/dashboard.dart';
 import 'package:lets_chat/sign_up.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -38,12 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     email: _emailController.text,
                     password: _passwordController.text,
                  )).user;
-                //  if (user != null) {
-                //     Navigator.pushReplacement(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => RecentChatsScreen()),
-                //     );
-                //  }
+                 if (user != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Dashboard()),
+                    );
+                 }
                 } catch (e) {
                  print(e);
                 }

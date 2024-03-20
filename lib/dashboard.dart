@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_chat/notes.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -54,7 +55,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lets Chat'),
+        title: const Text('Lets Chat'),
       ),
       drawer: Container(
         width: 200,
@@ -68,31 +69,33 @@ class _DashboardState extends State<Dashboard> {
                       radius: 50,
                       backgroundImage: NetworkImage(_imageUrl!),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ),
             _name != null
                 ? Text(
                     _name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                     ),
                   )
-                : SizedBox(),
-            SizedBox(height: 20),
+                : const SizedBox(),
+            const SizedBox(height: 20),
             ListTile(
-              leading: Icon(Icons.home, color: Colors.white),
-              title: Text('Home', style: TextStyle(color: Colors.white)),
+              leading: const Icon(Icons.home, color: Colors.white),
+              title: const Text('Home', style: TextStyle(color: Colors.white)),
               onTap: () => _onItemTapped(0),
             ),
             ListTile(
-              leading: Icon(Icons.settings, color: Colors.white),
-              title: Text('Settings', style: TextStyle(color: Colors.white)),
-              onTap: () => _onItemTapped(1),
+              leading: const Icon(Icons.settings, color: Colors.white),
+              title: const Text('Notes', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const TodoListApp(),));
+              },
             ),
             ListTile(
-              leading: Icon(Icons.logout, color: Colors.white),
-              title: Text('Logout', style: TextStyle(color: Colors.white)),
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text('Logout', style: TextStyle(color: Colors.white)),
               onTap: () => _onItemTapped(2),
             ),
           ],
@@ -105,18 +108,18 @@ class _DashboardState extends State<Dashboard> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Welcome to Lets Chat!',
                       style: TextStyle(fontSize: 24),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     if (_selectedIndex == 0)
-                      Text('Home Content')
+                      const Text('Home Content')
                     else if (_selectedIndex == 1)
-                      Text('Settings Content')
+                      const Text('Settings Content')
                     else
-                      Text('Logout Content'),
-                    SizedBox(height: 20),
+                      const Text('Logout Content'),
+                    const SizedBox(height: 20),
                     GridView.count(
                       shrinkWrap: true,
                       crossAxisCount: 2,
@@ -127,7 +130,7 @@ class _DashboardState extends State<Dashboard> {
                               AspectRatio(
                                 aspectRatio: 18.0 / 11.0,
                                 child: Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image: NetworkImage(
                                           'https://via.placeholder.com/150'),
